@@ -35,7 +35,7 @@ pytest tests/
 # Executar com Docker
 docker build -f docker/Dockerfile -t inadimplencia-api:v1 .
 docker run -p 8000:8000 inadimplencia-api:v1
-
+```
 
 ## Stack
 - **ML**: scikit-learn (Random Forest)
