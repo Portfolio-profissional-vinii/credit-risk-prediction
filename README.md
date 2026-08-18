@@ -1,50 +1,41 @@
-# Score de Inadimplência — Sistema ML fim-a-fim
+# Score de Inadimplência — Sistema ML Fim-a-fim
 
 ## O Problema
-Prever qual cliente tem maior probabilidade de ficar inadimplente e recomendar a
-melhor estratégia de cobrança por perfil.
+Prever qual cliente tem maior probabilidade de ficar inadimplente (com base em dados históricos de empréstimos) para otimizar a tomada de crédito e mitigar riscos de calote.
 
-## Resultado
-- **Acurácia (AUC):** 0.815 no test set
-- **Tempo de predição:** < 50ms por cliente
-- **Taxa de decisão automática:** 92% dos clientes classificados sem intervenção manual
-- **ROI projetado:** segmentar 10K clientes por risco evita perda de ~R$ 2.5Mi em
-  inadimplência
+## Resultados Esperados
+- **Acurácia / Métricas do Modelo:** Foco em otimização de AUC-ROC no conjunto de teste.
+- **Tempo de predição:** < 50ms por cliente via API.
+- **Impacto de Negócio:** Segmentar clientes por risco reduz perdas significativas em carteiras de crédito de varejo.
 
 ## Arquitetura
-1. **Pipeline de treino** (`src/pipeline.py`): coleta dados, feature engineering,
-   treina RF com validação cruzada
-2. **API de predição** (`api/main.py`): FastAPI que recebe features e retorna score +
-   recomendação em tempo real
-3. **Versionamento**: modelo salvo como artifact (`models/model_v1.pkl`), métricas
-   registradas
-4. **Monitoring** (`monitoring/check_drift.py`): detecta data drift e alerta pra
-   retreino
+1. **Pipeline de treino** (`src/pipeline.py`): Coleta dados brutos (`data/raw/`), executa feature engineering, lida com nulos e treina o modelo de Machine Learning.
+2. **API de predição** (`api/main.py`): FastAPI que recebe as características do cliente e retorna o score de risco em tempo real.
+3. **Versionamento**: Modelo salvo como artefato (`models/model_v1.pkl`) utilizando `joblib`.
+4. **Monitoring** (`monitoring/check_drift.py`): Estrutura para detecção de *data drift* e alertas de retreino.
 
 ## Como rodar
+
 ```bash
-# Setup
+# Setup do Ambiente Virtual e Dependências
+python -m venv .venv
+# No Windows: .\.venv\Scripts\activate
+# No Linux/Mac: source .venv/bin/activate
 pip install -r requirements.txt
 
-# Treino
+# Treinamento do Modelo (exemplo)
 python src/pipeline.py
 
-# API
+# Subir a API de predição
 python api/main.py
 
-# Teste
-curl -X POST "http://localhost:8000/predict" ...
+# Rodar os Testes Automatizados
+pytest tests/
 
-# Docker
+# Executar com Docker
 docker build -f docker/Dockerfile -t inadimplencia-api:v1 .
 docker run -p 8000:8000 inadimplencia-api:v1
 
-# Testes
-pytest tests/
-
-# Monitoring
-python monitoring/check_drift.py
-```
 
 ## Stack
 - **ML**: scikit-learn (Random Forest)
