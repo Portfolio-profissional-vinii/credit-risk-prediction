@@ -1,5 +1,16 @@
-data/
+# Dados brutos e processados (arquivos grandes — baixe conforme o README)
+data/raw/*.csv
+data/raw/*.parquet
+data/processed/*.csv
+data/processed/*.parquet
+
+# Modelos treinados
 models/*.pkl
+
+# Python
 __pycache__/
-.env
 *.pyc
+
+# Ambiente
+.env
+.venv/
