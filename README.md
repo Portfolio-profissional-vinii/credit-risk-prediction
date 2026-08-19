@@ -98,7 +98,45 @@ Define uma imagem isolada baseada em **Python 3.11-slim**, garantindo maior padr
 
 Implementa um teste estatístico de **Kolmogorov-Smirnov (KS-test)** para identificar possíveis mudanças na distribuição dos dados de entrada (**Data Drift**).
 
+## Como Rodar o Projeto
+
+### Pré-requisito: Download do Dataset
+
+Os dados **não estão incluídos** neste repositório (a pasta `data/` está no `.gitignore` por conter arquivos grandes).
+
+1. **Baixe o dataset original do Kaggle:**
+
+   👉 [Lending Club — accepted_2007_to_2018Q4.csv](https://www.kaggle.com/datasets/wordsforthewise/lending-club)
+
+   > É necessário ter uma conta no Kaggle. Após o login, clique em **Download** na página do dataset.
+
+2. **Coloque o arquivo baixado na pasta correta do projeto:**
+
+   ```text
+   ml-inadimplencia-scoring/
+   └── data/
+       └── raw/
+           └── accepted_2007_to_2018Q4.csv   ← coloque aqui
+   ```
+
+3. **Rode o notebook de exploração para gerar a base limpa automaticamente:**
+
+   ```bash
+   jupyter notebook notebooks/01_exploracao.ipynb
+   ```
+
+   Execute todas as células — o notebook irá processar o arquivo bruto e salvar o dataset tratado em:
+
+   ```text
+   data/processed/dados_tratados_model.csv
+   ```
+
+   Com a base processada em mãos, todos os demais passos (treinamento, API, testes) funcionarão normalmente.
+
+---
+
 ## Como Executar
+
 
 ### 1. Configuração do Ambiente e Dependências
 
