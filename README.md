@@ -287,7 +287,7 @@ Monitoramento de Data Drift
 
 A principal métrica utilizada na avaliação é a **AUC-ROC**, com resultado de:
 
-**0.72**
+**0.74**
 
 O resultado foi obtido após a remoção de variáveis que poderiam introduzir informações futuras no momento da concessão do crédito, tornando a validação mais realista para um cenário de produção.
 
