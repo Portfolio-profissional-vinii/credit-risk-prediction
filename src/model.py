@@ -23,7 +23,7 @@ def treinar_e_avaliar(X, y, caminho_modelo: str = 'models/model_v1.pkl'):
     
     # Treino
     modelo.fit(X_train, y_train)
-
+    
     # Avaliação
     y_pred_proba = modelo.predict_proba(X_test)[:, 1]
     auc_roc = roc_auc_score(y_test, y_pred_proba)
@@ -35,3 +35,4 @@ def treinar_e_avaliar(X, y, caminho_modelo: str = 'models/model_v1.pkl'):
     print(f"Modelo salvo com sucesso em: {caminho_modelo}")
 
     return modelo, auc_roc
+    
