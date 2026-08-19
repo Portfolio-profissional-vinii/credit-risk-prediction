@@ -8,7 +8,7 @@ O objetivo é classificar solicitações de empréstimo e calcular a probabilida
 
 ## Resultados e Métricas
 
-- **AUC-ROC (Validação Realista):** 0.72, obtido após sanitização rigorosa de Data Leakage, eliminando variáveis pós-concessão.
+- **AUC-ROC (Validação Realista):** 0.74, obtido após sanitização rigorosa de Data Leakage, eliminando variáveis pós-concessão.
 - **Tempo de Predição (SLA):** < 50 ms por requisição via API REST.
 - **Regra de Decisão:** corte automatizado de aprovação com threshold de probabilidade de inadimplência em 40%.
 
